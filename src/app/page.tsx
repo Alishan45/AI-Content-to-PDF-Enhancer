@@ -88,25 +88,25 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col items-center py-12 px-4 sm:px-6 lg:px-8 font-sans text-gray-900 dark:text-gray-100 transition-colors duration-300">
-      <div className="absolute top-4 right-4">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col items-center py-8 sm:py-12 px-4 sm:px-6 lg:px-8 font-sans text-gray-900 dark:text-gray-100 transition-colors duration-300">
+      <div className="absolute top-4 right-4 z-10">
         <ThemeToggle />
       </div>
-      <div className="max-w-3xl w-full space-y-8 bg-white dark:bg-gray-800 p-10 rounded-xl shadow-lg transition-colors duration-300 mt-10">
+      <div className="max-w-3xl w-full space-y-6 sm:space-y-8 bg-white dark:bg-gray-800 p-6 sm:p-10 rounded-xl shadow-lg transition-colors duration-300 mt-10">
         <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-gray-100">
+          <h2 className="mt-2 sm:mt-6 text-center text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-gray-100">
             AI Content-to-PDF Enhancer
           </h2>
-          <p className="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
+          <p className="mt-2 text-center text-sm sm:text-base text-gray-600 dark:text-gray-400">
             Convert generated text or webpage content into customizable, share-ready PDF documents.
           </p>
         </div>
 
-        <div className="mt-8">
-           <div className="flex justify-center space-x-4 mb-6">
+        <div className="mt-6 sm:mt-8">
+           <div className="flex flex-col sm:flex-row justify-center space-y-3 sm:space-y-0 sm:space-x-4 mb-6">
               <button
                 onClick={() => { setInputType("text"); setError(""); }}
-                className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
+                className={`w-full sm:w-auto px-4 py-2 text-sm font-medium rounded-md transition-colors ${
                   inputType === "text"
                     ? "bg-indigo-600 text-white"
                     : "bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600"
@@ -116,7 +116,7 @@ export default function Home() {
               </button>
               <button
                 onClick={() => { setInputType("url"); setError(""); }}
-                className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
+                className={`w-full sm:w-auto px-4 py-2 text-sm font-medium rounded-md transition-colors ${
                   inputType === "url"
                     ? "bg-indigo-600 text-white"
                     : "bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600"
