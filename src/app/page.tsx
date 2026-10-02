@@ -1,18 +1,23 @@
+import { ThemeToggle } from "@/components/theme-toggle";
+
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8 font-sans text-gray-900">
-      <div className="max-w-md w-full space-y-8 bg-white p-10 rounded-xl shadow-lg">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8 font-sans text-gray-900 dark:text-gray-100 transition-colors duration-300">
+      <div className="absolute top-4 right-4">
+        <ThemeToggle />
+      </div>
+      <div className="max-w-md w-full space-y-8 bg-white dark:bg-gray-800 p-10 rounded-xl shadow-lg transition-colors duration-300">
         <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-gray-100">
             AI Content PDF Enhancer
           </h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
+          <p className="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
             Upload your PDF and let AI enhance its content effortlessly.
           </p>
         </div>
         <form className="mt-8 space-y-6" action="#" method="POST">
           <div className="rounded-md shadow-sm -space-y-px">
-            <div className="border-2 border-dashed border-gray-300 rounded-lg p-12 text-center hover:bg-gray-50 transition-colors cursor-pointer">
+            <div className="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-12 text-center hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors cursor-pointer">
               <svg
                 className="mx-auto h-12 w-12 text-gray-400"
                 stroke="currentColor"
@@ -27,17 +32,17 @@ export default function Home() {
                   strokeLinejoin="round"
                 />
               </svg>
-              <div className="flex text-sm text-gray-600 justify-center mt-4">
+              <div className="flex text-sm text-gray-600 dark:text-gray-400 justify-center mt-4">
                 <label
                   htmlFor="file-upload"
-                  className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
+                  className="relative cursor-pointer bg-white dark:bg-gray-800 rounded-md font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500 transition-colors duration-300"
                 >
                   <span>Upload a file</span>
                   <input id="file-upload" name="file-upload" type="file" className="sr-only" accept=".pdf" />
                 </label>
                 <p className="pl-1">or drag and drop</p>
               </div>
-              <p className="mt-1 text-xs text-gray-500">PDF up to 10MB</p>
+              <p className="mt-1 text-xs text-gray-500 dark:text-gray-500">PDF up to 10MB</p>
             </div>
           </div>
 
