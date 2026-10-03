@@ -1,5 +1,13 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Environment Variables
+
+To use the AI enhancement features, you need to configure your environment variables. Create a `.env.local` file in the root directory and add your Google Gemini API key:
+
+```env
+GEMINI_API_KEY=your_gemini_api_key_here
+```
+
 ## Getting Started
 
 First, run the development server:
