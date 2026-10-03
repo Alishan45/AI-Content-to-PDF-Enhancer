@@ -10,6 +10,15 @@ export default function Home() {
   const [url, setUrl] = useState("");
   const [isGenerating, setIsGenerating] = useState(false);
   const [error, setError] = useState("");
+  const [enhanceWithAI, setEnhanceWithAI] = useState(false);
+  const [selectedModel, setSelectedModel] = useState("gemini-1.5-flash");
+
+  const MODELS = [
+    { id: "gemini-1.5-flash", name: "Gemini 1.5 Flash (Fast & Versatile)" },
+    { id: "gemini-1.5-flash-8b", name: "Gemini 1.5 Flash-8B (Lightweight & Fast)" },
+    { id: "gemini-1.5-pro", name: "Gemini 1.5 Pro (Complex Tasks)" },
+    { id: "gemini-pro", name: "Gemini Pro (Legacy)" },
+  ];
 
   const generatePDF = async () => {
     setIsGenerating(true);
@@ -41,6 +50,23 @@ export default function Home() {
         }
 
         textToProcess = data.text;
+      }
+
+      // AI Enhancement Step
+      if (enhanceWithAI) {
+        const response = await fetch("/api/enhance", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ text: textToProcess, modelName: selectedModel }),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error || "Failed to enhance content with AI.");
+        }
+
+        textToProcess = data.enhancedText;
       }
 
       // PDF Generation Logic
@@ -162,6 +188,39 @@ export default function Home() {
                   </div>
                 </div>
               )}
+
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600">
+                <div className="flex items-center mb-3 sm:mb-0">
+                  <input
+                    id="enhance-checkbox"
+                    type="checkbox"
+                    checked={enhanceWithAI}
+                    onChange={(e) => setEnhanceWithAI(e.target.checked)}
+                    className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded cursor-pointer"
+                  />
+                  <label htmlFor="enhance-checkbox" className="ml-2 block text-sm text-gray-900 dark:text-gray-100 cursor-pointer">
+                    Enhance content using AI
+                  </label>
+                </div>
+
+                {enhanceWithAI && (
+                  <div className="w-full sm:w-auto">
+                    <label htmlFor="model-select" className="sr-only">Choose AI Model</label>
+                    <select
+                      id="model-select"
+                      value={selectedModel}
+                      onChange={(e) => setSelectedModel(e.target.value)}
+                      className="block w-full pl-3 pr-10 py-2 text-base border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+                    >
+                      {MODELS.map((model) => (
+                        <option key={model.id} value={model.id}>
+                          {model.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                )}
+              </div>
 
               {error && (
                 <div className="text-red-500 text-sm mt-2">
